@@ -1,60 +1,66 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { GraduationCap } from "lucide-react"
+'use client';
+
+import { motion } from 'framer-motion';
+import { GraduationCap } from 'lucide-react';
+
+const education = [
+  {
+    institution: "National College of Engineering",
+    degree: "Bachelor in Computer Engineering",
+    period: "April 2022 - Present",
+  },
+  {
+    institution: "Gorkha International Public Secondary",
+    degree: "Higher Secondary",
+    period: "2019",
+  },
+  {
+    institution: "Takshashila Academy Kohapur",
+    degree: "Secondary",
+    period: "2019",
+  },
+];
 
 export default function Education() {
-  const education = [
-    {
-      institution: "National College of Engineering",
-      degree: "Bachelor in Computer Engineering",
-      period: "April 2022 - Present",
-      icon: GraduationCap,
-    },
-    {
-      institution: "Gorkha International Public Secondary",
-      degree: "Higher Secondary",
-      period: "2019",
-      icon: GraduationCap,
-    },
-    {
-      institution: "Takshashila Academy Kohapur",
-      degree: "Secondary",
-      period: "2019",
-      icon: GraduationCap,
-    },
-  ]
-
   return (
-    <section id="education" className="py-20 bg-white dark:bg-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">Education</h2>
-          <div className="mt-4 max-w-3xl mx-auto">
-            <div className="h-1 w-20 bg-blue-600 mx-auto"></div>
-          </div>
-        </div>
+    <section id="education" className="relative py-32 px-6">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          className="text-center mb-20"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-purple-300">
+            Education
+          </h2>
+          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
+        </motion.div>
 
-        <div className="max-w-3xl mx-auto space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {education.map((item, index) => (
-            <Card key={index}>
-              <CardContent className="p-6">
-                <div className="flex items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-600 text-white">
-                      <item.icon className="h-6 w-6" />
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-xl font-bold text-gray-900 dark:text-white">{item.institution}</h3>
-                    <p className="text-blue-600 dark:text-blue-400 font-medium">{item.degree}</p>
-                    <p className="text-gray-500 dark:text-gray-400 text-sm">{item.period}</p>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              whileHover={{ y: -5 }}
+              className="relative p-8 rounded-3xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all flex flex-col items-center text-center group"
+            >
+              <div className="mb-6 p-4 rounded-full bg-blue-600/20 text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                <GraduationCap className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-heading font-bold text-white mb-2">{item.institution}</h3>
+              <p className="text-blue-300 font-medium mb-4">{item.degree}</p>
+              <div className="mt-auto pt-4 border-t border-white/10 w-full">
+                <span className="text-sm text-gray-400">{item.period}</span>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
-
