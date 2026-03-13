@@ -63,13 +63,15 @@ export default function Navbar() {
               </Link>
             ))}
             
-            <Link 
-              href="/#contact" 
+            <a 
+              href="https://www.upwork.com/freelancers/~0193267b112e1a1b2d" 
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-6 py-2 bg-zinc-900 border border-zinc-800 text-white text-sm font-bold rounded-full hover:bg-white hover:text-black transition-all flex items-center gap-2"
             >
               Hire Me
               <ArrowUpRight size={14} />
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Toggle */}
@@ -103,14 +105,16 @@ export default function Navbar() {
                 </Link>
               ))}
               <div className="pt-8 border-t border-zinc-900">
-                <Link
-                  href="/#contact"
+                <a
+                  href="https://www.upwork.com/freelancers/~0193267b112e1a1b2d"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => setIsOpen(false)}
                   className="w-full py-4 bg-white text-black font-bold rounded-2xl flex items-center justify-center gap-2"
                 >
-                  Start a Project
+                  Hire Me
                   <ArrowUpRight size={20} />
-                </Link>
+                </a>
               </div>
             </div>
           </motion.div>

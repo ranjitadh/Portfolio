@@ -1,7 +1,7 @@
 'use client';
 
 import { motion, Variants } from 'framer-motion';
-import { ArrowRight, Mail, Phone, ChevronDown } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, ChevronDown } from 'lucide-react';
 
 export default function Hero() {
   const containerVariants: Variants = {
@@ -73,11 +73,13 @@ export default function Hero() {
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="#contact"
-            className="px-10 py-5 bg-zinc-900 text-white border border-zinc-800 rounded-full font-bold hover:bg-zinc-800 transition-all flex items-center gap-4 hover:border-zinc-700"
+            href="https://www.upwork.com/freelancers/~0193267b112e1a1b2d"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-10 py-5 bg-zinc-900 text-white border border-zinc-800 rounded-full font-bold hover:bg-zinc-800 transition-all flex items-center gap-4 hover:border-zinc-700 shadow-2xl shadow-black/40"
           >
-            Contact
-            <Mail className="w-5 h-5 text-zinc-500" />
+            Hire Me
+            <ArrowUpRight className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" />
           </motion.a>
         </motion.div>
       </motion.div>

@@ -63,7 +63,11 @@ export default function AboutPage() {
               className="space-y-4"
             >
               <h3 className="text-white font-bold uppercase tracking-widest text-xs">Social Presence</h3>
-              <div className="flex gap-6">
+              <div className="flex flex-wrap gap-4">
+                <a href="https://www.upwork.com/freelancers/~0193267b112e1a1b2d" target="_blank" rel="noopener noreferrer" className="p-3 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors flex items-center justify-center group">
+                  <span className="text-xs font-bold mr-2 text-zinc-500 group-hover:text-white transition-colors">Upwork</span>
+                  <ArrowUpRight className="w-4 h-4" />
+                </a>
                 <a href="#" className="p-3 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"><Github className="w-5 h-5" /></a>
                 <a href="#" className="p-3 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"><Linkedin className="w-5 h-5" /></a>
                 <a href="#" className="p-3 bg-zinc-900 rounded-full hover:bg-zinc-800 transition-colors"><Twitter className="w-5 h-5" /></a>

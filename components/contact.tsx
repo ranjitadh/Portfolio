@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle, ArrowUpRight } from 'lucide-react';
 import { useForm, ValidationError } from '@formspree/react';
 
 export default function Contact() {
@@ -36,6 +36,17 @@ export default function Contact() {
                 <div className="block">
                   <p className="text-zinc-500 text-xs mb-1">Location</p>
                   <p className="text-zinc-100">Saddobato, Lalitpur</p>
+                </div>
+                <div className="pt-6 border-t border-zinc-900">
+                  <a 
+                    href="https://www.upwork.com/freelancers/~0193267b112e1a1b2d" 
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-zinc-500 hover:text-white transition-colors group"
+                  >
+                    Hire me on Upwork
+                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                  </a>
                 </div>
               </div>
             </div>
