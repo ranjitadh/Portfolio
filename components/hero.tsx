@@ -1,90 +1,108 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowRight, Mail, Phone, Download } from 'lucide-react';
+import { ArrowRight, Mail, Phone, ChevronDown } from 'lucide-react';
 
 export default function Hero() {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.3
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }
+  };
+
   return (
-    <section className="relative min-h-[90vh] flex flex-col items-center justify-center px-6 pt-20">
-      <div className="max-w-4xl w-full text-center space-y-12">
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-white/[0.02] rounded-full blur-[120px] pointer-events-none" />
+
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="max-w-4xl w-full text-center space-y-12 relative z-10"
+      >
         {/* Availability Badge */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 text-xs font-medium tracking-wider uppercase"
+          variants={itemVariants}
+          animate={{ y: [0, -4, 0] }}
+          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 text-[10px] sm:text-xs font-medium tracking-widest uppercase"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
             <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
           </span>
-          Available for new opportunities
+          Fullstack Engineering & Design
         </motion.div>
 
         {/* Main Heading */}
         <div className="space-y-6">
           <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-6xl md:text-8xl font-heading font-bold tracking-tight text-white"
+            variants={itemVariants}
+            className="text-6xl md:text-9xl font-heading font-bold tracking-tight text-white leading-tight"
           >
-            Ranjit Adhikari
+            Ranjit <span className="text-zinc-500 underline decoration-zinc-800 underline-offset-8">Adhikari</span>
           </motion.h1>
           
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-xl md:text-2xl text-zinc-400 font-light max-w-2xl mx-auto leading-relaxed"
+            variants={itemVariants}
+            className="text-xl md:text-2xl text-zinc-400 font-light max-w-3xl mx-auto leading-relaxed"
           >
-            A frontend developer dedicated to crafting <span className="text-zinc-100 italic">minimalist</span>, 
-            high-performance digital experiences with code as an art form.
+            A <span className="text-white font-medium">Fullstack Developer</span> architecting robust backends and 
+            <span className="text-zinc-100 italic"> fluid</span> frontend experiences that push the boundaries of the modern web.
           </motion.p>
         </div>
 
         {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3 }}
-          className="flex flex-wrap items-center justify-center gap-6 pt-4"
+          variants={itemVariants}
+          className="flex flex-wrap items-center justify-center gap-6 pt-8"
         >
-          <a
-            href="#projects"
-            className="group px-8 py-3 bg-white text-black font-semibold rounded-full hover:bg-zinc-200 transition-all flex items-center gap-2"
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            href="/projects"
+            className="group px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-all flex items-center gap-3 shadow-xl shadow-white/5"
           >
-            View Projects
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </a>
-          <a
+            Explore Projects
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </motion.a>
+          <motion.a
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="px-8 py-3 bg-zinc-900 text-white border border-zinc-800 rounded-full font-semibold hover:bg-zinc-800 transition-all"
+            className="px-8 py-4 bg-zinc-900 text-white border border-zinc-800 rounded-full font-bold hover:bg-zinc-800 transition-all"
           >
-            Contact Me
-          </a>
+            Get in Touch
+          </motion.a>
         </motion.div>
+      </motion.div>
 
-        {/* Quick Contact Links */}
+      {/* Scroll Indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-zinc-600"
+      >
+        <span className="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-8 pt-12 border-t border-zinc-900"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
         >
-          <a href="mailto:ranzeet60@gmail.com" className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm">
-            <Mail className="w-4 h-4" />
-            ranzeet60@gmail.com
-          </a>
-          <a href="tel:+9779809517297" className="flex items-center gap-2 text-zinc-500 hover:text-white transition-colors text-sm">
-            <Phone className="w-4 h-4" />
-            +977 9809517297
-          </a>
-          <span className="flex items-center gap-2 text-zinc-500 text-sm">
-            Kathmandu, Nepal
-          </span>
+          <ChevronDown className="w-4 h-4" />
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }
