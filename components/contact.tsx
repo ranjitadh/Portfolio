@@ -8,164 +8,109 @@ export default function Contact() {
   const [state, handleSubmit] = useForm("xpqydgnw");
 
   return (
-    <section id="contact" className="relative py-32 px-6">
-      <div className="max-w-7xl mx-auto">
-        <motion.div
-          className="text-center mb-20"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-300 to-purple-300">
-            Get In Touch
+    <section id="contact" className="py-24 px-6">
+      <div className="max-w-6xl mx-auto">
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
+            Connect
           </h2>
-          <div className="h-1 w-24 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full mb-6"></div>
-          <p className="text-gray-400 max-w-2xl mx-auto text-lg">
-            I’m actively seeking remote or onsite opportunities. Let's build something amazing together.
+          <p className="text-lg text-zinc-400">
+            Currently available for freelance projects and full-time opportunities.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
           {/* Contact Info */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-8"
-          >
-            <div className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all group">
-              <div className="flex items-center gap-6">
-                <div className="p-4 rounded-2xl bg-blue-600/20 text-blue-400 group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                  <Mail className="w-8 h-8" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-1">Email</h3>
-                  <a href="mailto:ranzeet60@gmail.com" className="text-gray-400 hover:text-blue-400 transition-colors text-lg">
-                    ranzeet60@gmail.com
-                  </a>
+          <div className="lg:col-span-4 space-y-12">
+            <div className="space-y-4">
+              <h3 className="text-sm font-medium text-zinc-500 uppercase tracking-widest">Contact Details</h3>
+              <div className="space-y-6">
+                <a href="mailto:ranzeet60@gmail.com" className="group block">
+                  <p className="text-zinc-500 text-xs mb-1">Email</p>
+                  <p className="text-zinc-100 group-hover:text-zinc-400 transition-colors">ranzeet60@gmail.com</p>
+                </a>
+                <a href="tel:+9779809517297" className="group block">
+                  <p className="text-zinc-500 text-xs mb-1">Phone</p>
+                  <p className="text-zinc-100 group-hover:text-zinc-400 transition-colors">+977 9809517297</p>
+                </a>
+                <div className="block">
+                  <p className="text-zinc-500 text-xs mb-1">Location</p>
+                  <p className="text-zinc-100">Saddobato, Lalitpur</p>
                 </div>
               </div>
             </div>
+          </div>
 
-            <div className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all group">
-              <div className="flex items-center gap-6">
-                <div className="p-4 rounded-2xl bg-purple-600/20 text-purple-400 group-hover:bg-purple-600 group-hover:text-white transition-colors">
-                  <Phone className="w-8 h-8" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-1">Phone</h3>
-                  <p className="text-gray-400 text-lg">(+977) 9809517297</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="p-8 rounded-3xl bg-white/5 backdrop-blur-lg border border-white/10 hover:bg-white/10 transition-all group">
-              <div className="flex items-center gap-6">
-                <div className="p-4 rounded-2xl bg-cyan-600/20 text-cyan-400 group-hover:bg-cyan-600 group-hover:text-white transition-colors">
-                  <MapPin className="w-8 h-8" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-heading font-bold text-white mb-1">Location</h3>
-                  <p className="text-gray-400 text-lg">Saddobato, Lalitpur</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Contact Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="p-8 md:p-10 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10"
-          >
+          {/* Form */}
+          <div className="lg:col-span-8">
             {state.succeeded ? (
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-                className="flex flex-col items-center justify-center h-full py-16 gap-6 text-center"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="p-12 border border-zinc-900 bg-zinc-900/50 rounded-3xl text-center space-y-4"
               >
-                <div className="p-5 rounded-full bg-green-500/20 text-green-400">
-                  <CheckCircle className="w-16 h-16" />
-                </div>
-                <h3 className="text-2xl font-bold text-white">Message Sent!</h3>
-                <p className="text-gray-400 text-lg max-w-sm">
-                  Thanks for reaching out! I&apos;ll get back to you as soon as possible.
+                <CheckCircle className="w-12 h-12 text-zinc-100 mx-auto" />
+                <h3 className="text-2xl font-bold text-white">Inquiry Received</h3>
+                <p className="text-zinc-400 max-w-sm mx-auto">
+                  Thank you for reaching out. I will review your message and get back to you shortly.
                 </p>
               </motion.div>
             ) : (
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-gray-300 ml-1">Name</label>
+                    <label htmlFor="name" className="text-xs font-medium text-zinc-500 uppercase tracking-tight ml-1">Name</label>
                     <input
                       id="name"
                       type="text"
                       name="name"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                       placeholder="John Doe"
+                      className="w-full px-0 py-3 bg-transparent border-b border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-white transition-colors"
                     />
-                    <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-400 text-sm ml-1" />
+                    <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-900/80 text-xs mt-1" />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-gray-300 ml-1">Email</label>
+                    <label htmlFor="email" className="text-xs font-medium text-zinc-500 uppercase tracking-tight ml-1">Email</label>
                     <input
                       id="email"
                       type="email"
                       name="email"
                       required
-                      className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                       placeholder="john@example.com"
+                      className="w-full px-0 py-3 bg-transparent border-b border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-white transition-colors"
                     />
-                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-400 text-sm ml-1" />
+                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-900/80 text-xs mt-1" />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-gray-300 ml-1">Subject</label>
-                  <input
-                    id="subject"
-                    type="text"
-                    name="subject"
-                    required
-                    className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
-                    placeholder="Project Inquiry"
-                  />
-                  <ValidationError prefix="Subject" field="subject" errors={state.errors} className="text-red-400 text-sm ml-1" />
-                </div>
-
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-gray-300 ml-1">Message</label>
+                  <label htmlFor="message" className="text-xs font-medium text-zinc-500 uppercase tracking-tight ml-1">Message</label>
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={4}
-                    className="w-full px-4 py-3 rounded-xl bg-black/20 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all resize-none"
                     placeholder="Tell me about your project..."
+                    className="w-full px-0 py-3 bg-transparent border-b border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-white transition-colors resize-none"
                   />
-                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-400 text-sm ml-1" />
+                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-900/80 text-xs mt-1" />
                 </div>
 
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                <button
                   type="submit"
                   disabled={state.submitting}
-                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-bold text-lg shadow-lg shadow-blue-900/20 hover:shadow-blue-900/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+                  className="group flex items-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 disabled:opacity-50 transition-all"
                 >
-                  {state.submitting ? "Sending..." : <><Send className="w-5 h-5" /> Send Message</>}
-                </motion.button>
+                  {state.submitting ? "Sending..." : "Send Message"}
+                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </button>
               </form>
             )}
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
