@@ -36,61 +36,48 @@ export default function Hero() {
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-4xl w-full text-center space-y-12 relative z-10"
+        className="max-w-5xl w-full text-center space-y-16 relative z-10"
       >
-        {/* Availability Badge */}
-        <motion.div
-          variants={itemVariants}
-          animate={{ y: [0, -4, 0] }}
-          transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-zinc-800 bg-zinc-900/50 text-zinc-400 text-[10px] sm:text-xs font-medium tracking-widest uppercase"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-          </span>
-          Fullstack Engineering & Design
-        </motion.div>
-
         {/* Main Heading */}
-        <div className="space-y-6">
+        <div className="space-y-8">
           <motion.h1
             variants={itemVariants}
-            className="text-6xl md:text-9xl font-heading font-bold tracking-tight text-white leading-tight"
+            className="text-7xl md:text-[10rem] font-heading font-bold tracking-tighter text-white leading-[0.85]"
           >
-            Ranjit <span className="text-zinc-500 underline decoration-zinc-800 underline-offset-8">Adhikari</span>
+            Ranjit <span className="text-zinc-600 underline decoration-zinc-900 underline-offset-[1.5rem] decoration-4">Adhikari</span>
           </motion.h1>
           
           <motion.p
             variants={itemVariants}
-            className="text-xl md:text-2xl text-zinc-400 font-light max-w-3xl mx-auto leading-relaxed"
+            className="text-xl md:text-3xl text-zinc-500 font-light max-w-4xl mx-auto leading-relaxed tracking-tight"
           >
-            A <span className="text-white font-medium">Fullstack Developer</span> architecting robust backends and 
-            <span className="text-zinc-100 italic"> fluid</span> frontend experiences that push the boundaries of the modern web.
+            Engineering <span className="text-white font-medium">Fullstack</span> solutions 
+            with a focus on high-performance architecture and <span className="text-zinc-200 italic">visionary</span> design.
           </motion.p>
         </div>
 
         {/* CTAs */}
         <motion.div
           variants={itemVariants}
-          className="flex flex-wrap items-center justify-center gap-6 pt-8"
+          className="flex flex-wrap items-center justify-center gap-8 pt-8"
         >
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="/projects"
-            className="group px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-all flex items-center gap-3 shadow-xl shadow-white/5"
+            className="group px-10 py-5 bg-white text-black font-bold rounded-full hover:bg-zinc-200 transition-all flex items-center gap-4 shadow-2xl shadow-white/10"
           >
-            Explore Projects
+            View Projects
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </motion.a>
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="px-8 py-4 bg-zinc-900 text-white border border-zinc-800 rounded-full font-bold hover:bg-zinc-800 transition-all"
+            className="px-10 py-5 bg-zinc-900 text-white border border-zinc-800 rounded-full font-bold hover:bg-zinc-800 transition-all flex items-center gap-4 hover:border-zinc-700"
           >
-            Get in Touch
+            Contact
+            <Mail className="w-5 h-5 text-zinc-500" />
           </motion.a>
         </motion.div>
       </motion.div>

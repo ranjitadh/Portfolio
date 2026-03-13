@@ -13,6 +13,8 @@ export const metadata: Metadata = {
     "Portfolio website of Ranjit Adhikari, a Frontend Developer with expertise in React.js, TypeScript, and modern frontend technologies.",
 }
 
+import CustomCursor from "@/components/CustomCursor"
+
 export default function RootLayout({
   children,
 }: {
@@ -20,8 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${jakarta.variable} ${syne.variable} font-sans antialiased selection:bg-purple-500/30`}>
+      <body className={`${jakarta.variable} ${syne.variable} font-sans antialiased selection:bg-white selection:text-black`}>
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
+          <CustomCursor />
           {children}
         </ThemeProvider>
       </body>

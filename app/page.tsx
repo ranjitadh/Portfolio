@@ -53,8 +53,8 @@ export default function Home() {
         </motion.div>
       </div>
       
-      {/* Noise Texture Overlay */}
-      <div className="fixed inset-0 pointer-events-none opacity-[0.03] mix-blend-overlay z-[100] bg-[url('https://grainy-gradients.vercel.app/noise.svg')]" />
+      {/* Grainy Texture Overlay */}
+      <div className="noise-texture" />
     </main>
   );
 }
