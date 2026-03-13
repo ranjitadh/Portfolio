@@ -5,19 +5,23 @@ import { motion, useSpring, useMotionValue } from 'framer-motion';
 
 export default function CustomCursor() {
     const [isHovering, setIsHovering] = useState(false);
+    const [isPressed, setIsPressed] = useState(false);
 
-    // Use MotionValues for high-performance updates
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
-    // Smooth springs for the cursor movement
-    const cursorX = useSpring(mouseX, { damping: 25, stiffness: 250 });
-    const cursorY = useSpring(mouseY, { damping: 25, stiffness: 250 });
+    // Main Dot (Faster)
+    const dotX = useSpring(mouseX, { damping: 20, stiffness: 350 });
+    const dotY = useSpring(mouseY, { damping: 20, stiffness: 350 });
+
+    // Trailing Ring (Slower/Smoother)
+    const ringX = useSpring(mouseX, { damping: 30, stiffness: 150 });
+    const ringY = useSpring(mouseY, { damping: 30, stiffness: 150 });
 
     useEffect(() => {
         const moveCursor = (e: MouseEvent) => {
-            mouseX.set(e.clientX - 16); // Center the 32px cursor
-            mouseY.set(e.clientY - 16);
+            mouseX.set(e.clientX);
+            mouseY.set(e.clientY);
         };
 
         const handleMouseOver = (e: MouseEvent) => {
@@ -35,26 +39,50 @@ export default function CustomCursor() {
             }
         };
 
+        const handleMouseDown = () => setIsPressed(true);
+        const handleMouseUp = () => setIsPressed(false);
+
         window.addEventListener('mousemove', moveCursor);
         document.addEventListener('mouseover', handleMouseOver);
+        window.addEventListener('mousedown', handleMouseDown);
+        window.addEventListener('mouseup', handleMouseUp);
 
         return () => {
             window.removeEventListener('mousemove', moveCursor);
             document.removeEventListener('mouseover', handleMouseOver);
+            window.removeEventListener('mousedown', handleMouseDown);
+            window.removeEventListener('mouseup', handleMouseUp);
         };
     }, [mouseX, mouseY]);
 
     return (
-        <motion.div
-            className="fixed top-0 left-0 w-8 h-8 bg-white rounded-full pointer-events-none z-[9999] mix-blend-difference"
-            style={{
-                x: cursorX,
-                y: cursorY,
-            }}
-            animate={{
-                scale: isHovering ? 2.5 : 1,
-            }}
-            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        />
+        <div className="fixed inset-0 pointer-events-none z-[9999] mix-blend-difference">
+            {/* Trailing Ring */}
+            <motion.div
+                className="absolute w-12 h-12 border border-white rounded-full flex items-center justify-center -translate-x-1/2 -translate-y-1/2"
+                style={{
+                    x: ringX,
+                    y: ringY,
+                }}
+                animate={{
+                    scale: isHovering ? 1.5 : 1,
+                    opacity: isPressed ? 0.5 : 1,
+                    borderWidth: isHovering ? '1px' : '2px',
+                }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+            />
+
+            {/* Main Dot */}
+            <motion.div
+                className="absolute w-2 h-2 bg-white rounded-full -translate-x-1/2 -translate-y-1/2"
+                style={{
+                    x: dotX,
+                    y: dotY,
+                }}
+                animate={{
+                    scale: isHovering ? 0 : 1,
+                }}
+            />
+        </div>
     );
 }
