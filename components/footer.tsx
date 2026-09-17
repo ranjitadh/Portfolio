@@ -1,58 +1,94 @@
-import { Github, Linkedin, Twitter } from "lucide-react"
+"use client"
+
+import { motion } from "framer-motion"
 
 export default function Footer() {
-  const currentYear = new Date().getFullYear()
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   return (
-    <footer className="bg-gray-900 text-white py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0">
-            <h2 className="text-2xl font-bold">Ranjit Adhikari</h2>
-            <p className="text-gray-400 mt-2">Frontend Developer</p>
+    <footer className="py-16 md:py-20 px-6 md:px-10">
+      <div
+        className="max-w-[1200px] mx-auto pt-10 border-t"
+        style={{ borderColor: "hsl(30 15% 85%)" }}
+      >
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
+          {/* Left */}
+          <div className="space-y-3">
+            <span
+              className="font-heading text-lg font-bold tracking-tight block"
+              style={{ color: "hsl(0 0% 10%)" }}
+            >
+              RA.
+            </span>
+            <div>
+              <p
+                className="text-sm font-medium"
+                style={{ color: "hsl(0 0% 15%)" }}
+              >
+                Ranjit Adhikari
+              </p>
+              <p
+                className="text-xs"
+                style={{ color: "hsl(0 0% 55%)" }}
+              >
+                Frontend / Full-Stack Developer
+              </p>
+            </div>
           </div>
 
-          <div className="flex space-x-6">
-            <a href="https://github.com/ranjitadh" className="text-gray-400 hover:text-white transition-colors">
-              <Github className="h-6 w-6" />
-              <span className="sr-only">GitHub</span>
-            </a>
-            <a href="https://www.linkedin.com/in/ranjit-adhikari/" className="text-gray-400 hover:text-white transition-colors">
-              <Linkedin className="h-6 w-6" />
-              <span className="sr-only">LinkedIn</span>
-            </a>
-            <a href="https://x.com/ranjit_adh" className="text-gray-400 hover:text-white transition-colors">
-              <Twitter className="h-6 w-6" />
-              <span className="sr-only">Twitter</span>
+          {/* Center */}
+          <div className="text-xs" style={{ color: "hsl(0 0% 55%)" }}>
+            <p>Lalitpur, Nepal</p>
+            <a
+              href="mailto:ranzeet60@gmail.com"
+
+              className="hover:opacity-60 transition-opacity"
+              style={{ color: "hsl(0 0% 40%)" }}
+            >
+              ranzeet60@gmail.com
             </a>
           </div>
+
+          {/* Right - Back to top */}
+          <motion.button
+            onClick={scrollToTop}
+
+            whileTap={{ scale: 0.92 }}
+            className="group flex items-center gap-2 text-xs font-medium"
+            style={{ color: "hsl(0 0% 55%)" }}
+          >
+            <span className="group-hover:translate-y-[-2px] transition-transform duration-300">
+              Back to top
+            </span>
+            <span className="inline-block group-hover:translate-y-[-3px] transition-transform duration-300">
+              &uarr;
+            </span>
+          </motion.button>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400">&copy; {currentYear} Ranjit Adhikari. All rights reserved.</p>
+        <div className="mt-12 flex items-center justify-between">
+          <p
+            className="text-[10px] font-mono"
+            style={{ color: "hsl(0 0% 75%)" }}
+          >
+            &copy; {new Date().getFullYear()}
+          </p>
+          <div className="flex gap-6">
+            <a
+              href="https://www.upwork.com/freelancers/~0193267b112e1a1b2d"
+              target="_blank"
+              rel="noopener noreferrer"
 
-          <div className="mt-4 md:mt-0">
-            <ul className="flex space-x-6">
-              <li>
-                <a href="#about" className="text-gray-400 hover:text-white transition-colors">
-                  About
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-gray-400 hover:text-white transition-colors">
-                  Projects
-                </a>
-              </li>
-              <li>
-                <a href="#contact" className="text-gray-400 hover:text-white transition-colors">
-                  Contact
-                </a>
-              </li>
-            </ul>
+              className="text-[10px] font-mono uppercase tracking-wider hover:opacity-60 transition-opacity"
+              style={{ color: "hsl(0 0% 60%)" }}
+            >
+              Upwork
+            </a>
           </div>
         </div>
       </div>
     </footer>
   )
 }
-

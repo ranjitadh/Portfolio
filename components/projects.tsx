@@ -1,164 +1,272 @@
-'use client';
+"use client"
 
-import { motion } from 'framer-motion';
-import { ExternalLink, Github, ArrowUpRight } from 'lucide-react';
-import Link from 'next/link';
+import { useRef, useState } from "react"
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "framer-motion"
+import Link from "next/link"
+
+import ProjectGraphic from "@/components/project-graphic"
 
 export const ALL_PROJECTS = [
   {
-    title: 'Multi-Tube',
-    description: 'High-performance video streaming platform with real-time analytics and global content delivery.',
-    link: 'https://dev.multi-tube.com/',
-    image: '/project_multi_tube.png',
-    tags: ['Next.js', 'Redux', 'WebRTC'],
+    title: "GoHandsY",
+    description:
+      "Production marketplace platform connecting customers with craftsmen, built with multilingual support and full-stack integration.",
+    link: "https://gohandsy.com",
+    tags: ["React", "Next.js", "Django", "PostgreSQL", "TypeScript"],
   },
   {
-    title: 'DataBrakes Web',
-    description: 'Sophisticated systems analytics portal featuring complex 3D data visualizations and real-time monitoring.',
-    link: 'https://dev.data-brakes.com/',
-    image: '/project_databrakes.png',
-    tags: ['React', 'D3.js', 'PostgreSQL'],
+    title: "Multi-Tube",
+    description:
+      "High-performance video streaming platform with real-time analytics and global content delivery.",
+    link: "https://dev.multi-tube.com/",
+    tags: ["Next.js", "Redux", "WebRTC"],
   },
   {
-    title: 'Cosmic Dashboard',
-    description: 'Interactive space exploration interface with real-time galaxy resource tracking and fleet management.',
-    image: '/project_cosmic.png',
-    tags: ['Three.js', 'React', 'Motion'],
+    title: "DataBrakes Web",
+    description:
+      "Sophisticated systems analytics portal featuring complex data visualizations and real-time monitoring.",
+    link: "https://dev.data-brakes.com/",
+    tags: ["React", "D3.js", "PostgreSQL"],
   },
   {
-    title: 'Neural Network',
-    description: 'Deep diving into AI behavior through an interactive, pulsating visualization of deep learning layers.',
-    image: '/project_neural.png',
-    tags: ['AI/ML', 'Pytorch', 'Canvas'],
+    title: "Cosmic Dashboard",
+    description:
+      "Interactive space exploration interface with real-time galaxy resource tracking and fleet management.",
+    tags: ["Three.js", "React", "Motion"],
   },
   {
-    title: 'Quantum Interface',
-    description: 'Next-gen UX experimentation using liquid glass elements and chromatic aberration for immersive depth.',
-    image: '/project_quantum.png',
-    tags: ['UX/UI', 'Framer', 'GLSL'],
+    title: "Neural Network",
+    description:
+      "Deep diving into AI behavior through an interactive, pulsating visualization of deep learning layers.",
+    tags: ["AI/ML", "Pytorch", "Canvas"],
   },
   {
-    title: 'Cafe Connect',
-    description: 'Bespoke mobile ordering solution for premium coffee brands, featuring fluid glass-morphism UI.',
-    link: 'https://my-3j553mqd5-ranjitadhs-projects.vercel.app',
-    image: '/project_cafeconnect.png',
-    tags: ['React Native', 'Expo', 'Stripe'],
+    title: "Quantum Interface",
+    description:
+      "Next-gen UX experimentation using liquid glass elements and chromatic aberration for immersive depth.",
+    tags: ["UX/UI", "Framer", "GLSL"],
   },
   {
-    title: 'Particle System',
-    description: 'A massive-scale particle physics simulation running in the browser using custom GPU shaders.',
-    image: '/project_particle.png',
-    tags: ['WebGL', 'Compute Shaders'],
+    title: "Cafe Connect",
+    description:
+      "Bespoke mobile ordering solution for premium coffee brands, featuring fluid UI design.",
+    link: "https://my-3j553mqd5-ranjitadhs-projects.vercel.app",
+    tags: ["React Native", "Expo", "Stripe"],
   },
   {
-    title: 'Virtual Worlds',
-    description: 'Professional world-building toolset for low-poly environments with high-fidelity lighting.',
-    image: '/project_virtual.png',
-    tags: ['Unity', 'C#', 'WebAssembly'],
+    title: "Particle System",
+    description:
+      "A massive-scale particle physics simulation running in the browser using custom GPU shaders.",
+    tags: ["WebGL", "Compute Shaders"],
   },
   {
-    title: 'SignBridge',
-    description: 'Accessibility tool translating real-time speech into sign language animations using computer vision.',
-    image: '/project_multi_tube.png',
-    tags: ['Python', 'OpenCV', 'TensorFlow'],
+    title: "Virtual Worlds",
+    description:
+      "Professional world-building toolset for low-poly environments with high-fidelity lighting.",
+    tags: ["Unity", "C#", "WebAssembly"],
   },
   {
-    title: 'Holographic UI',
-    description: 'Experimental futuristic interface design for industrial control systems and HUD visualizations.',
-    image: '/project_holographic.png',
-    tags: ['Sci-Fi UI', 'Blender', 'React'],
+    title: "SignBridge",
+    description:
+      "Accessibility tool translating real-time speech into sign language animations using computer vision.",
+    tags: ["Python", "OpenCV", "TensorFlow"],
   },
-];
+  {
+    title: "Holographic UI",
+    description:
+      "Experimental futuristic interface design for industrial control systems and HUD visualizations.",
+    tags: ["Sci-Fi UI", "Blender", "React"],
+  },
+]
 
-export default function Projects({ featuredOnly = false }: { featuredOnly?: boolean }) {
-  const displayedProjects = featuredOnly ? ALL_PROJECTS.slice(0, 4) : ALL_PROJECTS;
+interface ProjectCardProps {
+  project: (typeof ALL_PROJECTS)[number]
+  index: number
+}
+
+function ProjectCard({ project, index }: ProjectCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [isHovered, setIsHovered] = useState(false)
+
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const springConfig = { stiffness: 150, damping: 20, mass: 0.5 }
+  const smoothX = useSpring(mouseX, springConfig)
+  const smoothY = useSpring(mouseY, springConfig)
+
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [3, -3])
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-3, 3])
+  const imageScale = useTransform(smoothX, [-1, 0, 1], [1.03, 1, 1.03])
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!cardRef.current) return
+    const rect = cardRef.current.getBoundingClientRect()
+    const x = (e.clientX - rect.left) / rect.width - 0.5
+    const y = (e.clientY - rect.top) / rect.height - 0.5
+    mouseX.set(x)
+    mouseY.set(y)
+  }
+
+  const handleMouseLeave = () => {
+    setIsHovered(false)
+    mouseX.set(0)
+    mouseY.set(0)
+  }
+
+  const paddedIndex = String(index + 1).padStart(2, "0")
 
   return (
-    <section id="projects" className="py-24 px-6 relative">
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ duration: 0.8, delay: index % 2 === 0 ? 0 : 0.15, ease: [0.22, 1, 0.36, 1] }}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={handleMouseLeave}
+      className="group"
+
+    >
+      <Link href={`/projects?project=${index}`} className="block">
+        {/* Image container */}
+        <motion.div
+          className="relative aspect-[16/10] overflow-hidden mb-6"
+          style={{
+            rotateX: isHovered ? rotateX : 0,
+            rotateY: isHovered ? rotateY : 0,
+            perspective: 800,
+          }}
+        >
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            className="w-full h-full"
+            style={{
+              scale: imageScale,
+            }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold tracking-tighter text-white mb-6">
-              Selected <span className="text-zinc-500 italic">Work.</span>
-            </h2>
-            <p className="text-xl text-zinc-400 max-w-xl leading-relaxed">
-              Merging technical complexity with visual elegance to build products that define the modern web.
-            </p>
+            <ProjectGraphic
+              project={project.title}
+              className="w-full h-full"
+            />
           </motion.div>
-          
-          {featuredOnly && (
-            <motion.div
-               initial={{ opacity: 0, x: 20 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true }}
+
+          {/* Subtle overlay on hover */}
+          <motion.div
+            className="absolute inset-0"
+            animate={{
+              background: isHovered
+                ? "linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 60%)"
+                : "linear-gradient(to top, rgba(0,0,0,0.1) 0%, transparent 40%)",
+            }}
+            transition={{ duration: 0.4 }}
+          />
+
+          {/* Project number on image */}
+          <motion.span
+            className="absolute top-5 left-5 font-mono text-xs"
+            animate={{
+              y: isHovered ? 0 : 5,
+              opacity: isHovered ? 1 : 0.4,
+            }}
+            transition={{ type: "spring", stiffness: 200, damping: 20 }}
+            style={{ color: "rgba(255,255,255,0.7)" }}
+          >
+            {paddedIndex}
+          </motion.span>
+        </motion.div>
+
+        {/* Text content */}
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0">
+            <h3
+              className="text-xl md:text-2xl font-heading font-bold tracking-tight mb-2 transition-colors duration-300"
+              style={{
+                color: isHovered ? "hsl(0 0% 10%)" : "hsl(0 0% 20%)",
+              }}
             >
-              <Link 
-                href="/projects" 
-                className="group flex items-center gap-3 px-8 py-4 bg-zinc-900 border border-zinc-800 rounded-full text-white font-bold hover:bg-zinc-800 transition-all active:scale-95"
-              >
-                View full catalog
-                <ArrowUpRight className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </Link>
-            </motion.div>
-          )}
+              {project.title}
+            </h3>
+            <p
+              className="text-sm leading-relaxed max-w-md"
+              style={{ color: "hsl(0 0% 50%)" }}
+            >
+              {project.description}
+            </p>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-24">
-          {displayedProjects.map((project, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: (index % 2) * 0.1 }}
-              className="group"
+        {/* Tags */}
+        <div className="flex flex-wrap gap-2 mt-4">
+          {project.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-[10px] font-mono uppercase tracking-[0.1em] px-2 py-0.5"
+              style={{
+                color: "hsl(0 0% 55%)",
+                backgroundColor: "hsl(30 15% 93%)",
+              }}
             >
-              <div className="relative aspect-[16/10] overflow-hidden rounded-[40px] border border-zinc-900 bg-zinc-900 shadow-2xl mb-8">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-in-out"
-                />
-                
-                {/* Overlay on Hover */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-all duration-500 backdrop-blur-[2px] flex items-center justify-center gap-6">
-                   <a href="#" className="w-14 h-14 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-xl"><Github size={24} /></a>
-                   {project.link && (
-                     <a href={project.link} target="_blank" rel="noopener noreferrer" className="w-14 h-14 bg-white text-black rounded-full flex items-center justify-center hover:scale-110 transition-transform shadow-xl">
-                       <ExternalLink size={24} />
-                     </a>
-                   )}
-                </div>
-                
-                <div className="absolute top-8 left-8 flex flex-wrap gap-2 pointer-events-none">
-                  {project.tags.map((tag, i) => (
-                    <span key={i} className="px-3 py-1 bg-black/50 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-white/70 rounded-full border border-white/10">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </Link>
+    </motion.div>
+  )
+}
 
-              <div className="space-y-4 px-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-3xl font-bold text-white group-hover:translate-x-2 transition-transform duration-500">
-                    {project.title}
-                  </h3>
-                  <div className="h-px flex-1 bg-zinc-900 mx-8 hidden lg:block" />
-                  <span className="text-zinc-700 font-mono text-sm hidden lg:block">0{index + 1}</span>
-                </div>
-                <p className="text-zinc-500 leading-relaxed text-lg max-w-md">
-                  {project.description}
-                </p>
-              </div>
-            </motion.div>
+export default function Projects({ featuredOnly = false }: { featuredOnly?: boolean }) {
+  const displayedProjects = featuredOnly
+    ? ALL_PROJECTS.slice(0, 4)
+    : ALL_PROJECTS
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-50px" })
+
+  return (
+    <section id="projects" className="py-24 md:py-32 px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto" ref={ref}>
+        {/* Section header */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.8 }}
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 md:mb-20 gap-6"
+        >
+          <div>
+            <p
+              className="text-xs uppercase tracking-[0.2em] font-medium mb-4"
+              style={{ color: "hsl(0 0% 60%)" }}
+            >
+              Selected Work
+            </p>
+            <h2
+              className="text-3xl md:text-4xl font-heading font-bold tracking-tight"
+              style={{ color: "hsl(0 0% 10%)" }}
+            >
+              Things I&apos;ve built.
+            </h2>
+          </div>
+
+          {featuredOnly && (
+            <Link
+              href="/projects"
+
+              className="group inline-flex items-center gap-2 text-sm font-medium"
+              style={{ color: "hsl(0 0% 40%)" }}
+            >
+              View all projects
+            </Link>
+          )}
+        </motion.div>
+
+        {/* Projects grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-16 md:gap-y-20">
+          {displayedProjects.map((project, index) => (
+            <ProjectCard key={project.title} project={project} index={index} />
           ))}
         </div>
       </div>
     </section>
-  );
+  )
 }

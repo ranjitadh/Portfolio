@@ -1,127 +1,294 @@
-'use client';
+"use client"
 
-import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, CheckCircle, ArrowUpRight } from 'lucide-react';
-import { useForm, ValidationError } from '@formspree/react';
+import { useRef, useState } from "react"
+import { motion, useInView } from "framer-motion"
+import { useForm, ValidationError } from "@formspree/react"
 
 export default function Contact() {
-  const [state, handleSubmit] = useForm("xpqydgnw");
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [state, handleSubmit] = useForm("xpqydgnw")
+  const [copied, setCopied] = useState(false)
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText("ranzeet60@gmail.com")
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
   return (
-    <section id="contact" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-white mb-4">
-            Connect
-          </h2>
-          <p className="text-lg text-zinc-400">
-            Currently available for freelance projects and full-time opportunities.
+    <section id="contact" className="py-24 md:py-32 px-6 md:px-10">
+      <div className="max-w-[1200px] mx-auto" ref={ref}>
+        {/* Big statement */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-20 md:mb-28"
+        >
+          <p
+            className="text-xs uppercase tracking-[0.2em] font-medium mb-8"
+            style={{ color: "hsl(0 0% 60%)" }}
+          >
+            Get in touch
           </p>
-        </div>
+          <h2
+            className="text-4xl md:text-6xl lg:text-7xl font-heading font-bold tracking-tight leading-[1.05]"
+            style={{ color: "hsl(0 0% 10%)" }}
+          >
+            Have something
+            <br />
+            interesting in mind?
+          </h2>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="mt-6 text-lg"
+            style={{ color: "hsl(0 0% 50%)" }}
+          >
+            Let&apos;s build it.
+          </motion.p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-          {/* Contact Info */}
-          <div className="lg:col-span-4 space-y-12">
-            <div className="space-y-4">
-              <h3 className="text-sm font-medium text-zinc-500 uppercase tracking-widest">Contact Details</h3>
-              <div className="space-y-6">
-                <a href="mailto:ranzeet60@gmail.com" className="group block">
-                  <p className="text-zinc-500 text-xs mb-1">Email</p>
-                  <p className="text-zinc-100 group-hover:text-zinc-400 transition-colors">ranzeet60@gmail.com</p>
-                </a>
-                <a href="tel:+9779809517297" className="group block">
-                  <p className="text-zinc-500 text-xs mb-1">Phone</p>
-                  <p className="text-zinc-100 group-hover:text-zinc-400 transition-colors">+977 9809517297</p>
-                </a>
-                <div className="block">
-                  <p className="text-zinc-500 text-xs mb-1">Location</p>
-                  <p className="text-zinc-100">Saddobato, Lalitpur</p>
-                </div>
-                <div className="pt-6 border-t border-zinc-900">
-                  <a 
-                    href="https://www.upwork.com/freelancers/~0193267b112e1a1b2d" 
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-zinc-500 hover:text-white transition-colors group"
-                  >
-                    Hire me on Upwork
-                    <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </a>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Contact info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="space-y-10"
+          >
+            {/* Email */}
+            <div>
+              <p
+                className="text-xs uppercase tracking-[0.15em] font-medium mb-3"
+                style={{ color: "hsl(0 0% 55%)" }}
+              >
+                Email
+              </p>
+              <button
+                onClick={handleCopyEmail}
+
+                className="group relative text-lg md:text-xl font-medium transition-colors duration-300"
+                style={{ color: "hsl(0 0% 15%)" }}
+              >
+                <span className="group-hover:tracking-wide transition-all duration-300">
+                  ranzeet60@gmail.com
+                </span>
+                <span
+                  className="absolute -top-1 -right-8 text-[10px] font-mono opacity-0 group-hover:opacity-100 transition-opacity"
+                  style={{ color: "hsl(0 0% 60%)" }}
+                >
+                  {copied ? "Copied" : "Copy"}
+                </span>
+              </button>
             </div>
-          </div>
+
+            {/* Phone */}
+            <div>
+              <p
+                className="text-xs uppercase tracking-[0.15em] font-medium mb-3"
+                style={{ color: "hsl(0 0% 55%)" }}
+              >
+                Phone
+              </p>
+              <a
+                href="tel:+9779809517297"
+
+                className="text-lg md:text-xl font-medium transition-colors duration-300 hover:opacity-60"
+                style={{ color: "hsl(0 0% 15%)" }}
+              >
+                +977 9809517297
+              </a>
+            </div>
+
+            {/* Location */}
+            <div>
+              <p
+                className="text-xs uppercase tracking-[0.15em] font-medium mb-3"
+                style={{ color: "hsl(0 0% 55%)" }}
+              >
+                Location
+              </p>
+              <p
+                className="text-lg md:text-xl font-medium"
+                style={{ color: "hsl(0 0% 15%)" }}
+              >
+                Lalitpur, Nepal
+              </p>
+            </div>
+
+            {/* Upwork */}
+            <div className="pt-6">
+              <a
+                href="https://www.upwork.com/freelancers/~0193267b112e1a1b2d"
+                target="_blank"
+                rel="noopener noreferrer"
+
+                className="group inline-flex items-center gap-3 px-8 py-3.5 text-sm font-medium tracking-wide transition-all duration-300"
+                style={{
+                  backgroundColor: "hsl(0 0% 10%)",
+                  color: "hsl(40 20% 95%)",
+                }}
+              >
+                Hire me on Upwork
+              </a>
+            </div>
+          </motion.div>
 
           {/* Form */}
-          <div className="lg:col-span-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.35, duration: 0.8 }}
+          >
             {state.succeeded ? (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="p-12 border border-zinc-900 bg-zinc-900/50 rounded-3xl text-center space-y-4"
+              <div
+                className="py-20 text-center"
+                style={{ borderTop: "1px solid hsl(30 15% 85%)" }}
               >
-                <CheckCircle className="w-12 h-12 text-zinc-100 mx-auto" />
-                <h3 className="text-2xl font-bold text-white">Inquiry Received</h3>
-                <p className="text-zinc-400 max-w-sm mx-auto">
-                  Thank you for reaching out. I will review your message and get back to you shortly.
+                <p
+                  className="text-2xl font-heading font-bold mb-2"
+                  style={{ color: "hsl(0 0% 10%)" }}
+                >
+                  Message sent.
                 </p>
-              </motion.div>
+                <p style={{ color: "hsl(0 0% 50%)" }}>
+                  I&apos;ll get back to you soon.
+                </p>
+              </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                  <div className="space-y-2">
-                    <label htmlFor="name" className="text-xs font-medium text-zinc-500 uppercase tracking-tight ml-1">Name</label>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label
+                      htmlFor="name"
+                      className="text-[10px] uppercase tracking-[0.15em] font-medium block mb-2"
+                      style={{ color: "hsl(0 0% 55%)" }}
+                    >
+                      Name
+                    </label>
                     <input
                       id="name"
                       type="text"
                       name="name"
                       required
-                      placeholder="John Doe"
-                      className="w-full px-0 py-3 bg-transparent border-b border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-white transition-colors"
+                      placeholder="Your name"
+
+                      className="w-full py-3 bg-transparent text-sm outline-none transition-colors placeholder:opacity-40"
+                      style={{
+                        borderBottom: "1px solid hsl(30 15% 85%)",
+                        color: "hsl(0 0% 10%)",
+                      }}
+                      onFocus={(e) =>
+                        (e.target.style.borderBottomColor = "hsl(0 0% 10%)")
+                      }
+                      onBlur={(e) =>
+                        (e.target.style.borderBottomColor = "hsl(30 15% 85%)")
+                      }
                     />
-                    <ValidationError prefix="Name" field="name" errors={state.errors} className="text-red-900/80 text-xs mt-1" />
+                    <ValidationError
+                      prefix="Name"
+                      field="name"
+                      errors={state.errors}
+                      className="text-xs mt-1"
+                      style={{ color: "hsl(0 0% 60%)" }}
+                    />
                   </div>
-                  <div className="space-y-2">
-                    <label htmlFor="email" className="text-xs font-medium text-zinc-500 uppercase tracking-tight ml-1">Email</label>
+                  <div>
+                    <label
+                      htmlFor="email"
+                      className="text-[10px] uppercase tracking-[0.15em] font-medium block mb-2"
+                      style={{ color: "hsl(0 0% 55%)" }}
+                    >
+                      Email
+                    </label>
                     <input
                       id="email"
                       type="email"
                       name="email"
                       required
-                      placeholder="john@example.com"
-                      className="w-full px-0 py-3 bg-transparent border-b border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-white transition-colors"
+                      placeholder="your@email.com"
+
+                      className="w-full py-3 bg-transparent text-sm outline-none transition-colors placeholder:opacity-40"
+                      style={{
+                        borderBottom: "1px solid hsl(30 15% 85%)",
+                        color: "hsl(0 0% 10%)",
+                      }}
+                      onFocus={(e) =>
+                        (e.target.style.borderBottomColor = "hsl(0 0% 10%)")
+                      }
+                      onBlur={(e) =>
+                        (e.target.style.borderBottomColor = "hsl(30 15% 85%)")
+                      }
                     />
-                    <ValidationError prefix="Email" field="email" errors={state.errors} className="text-red-900/80 text-xs mt-1" />
+                    <ValidationError
+                      prefix="Email"
+                      field="email"
+                      errors={state.errors}
+                      className="text-xs mt-1"
+                      style={{ color: "hsl(0 0% 60%)" }}
+                    />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <label htmlFor="message" className="text-xs font-medium text-zinc-500 uppercase tracking-tight ml-1">Message</label>
+                <div>
+                  <label
+                    htmlFor="message"
+                    className="text-[10px] uppercase tracking-[0.15em] font-medium block mb-2"
+                    style={{ color: "hsl(0 0% 55%)" }}
+                  >
+                    Message
+                  </label>
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows={4}
                     placeholder="Tell me about your project..."
-                    className="w-full px-0 py-3 bg-transparent border-b border-zinc-800 text-white placeholder-zinc-700 focus:outline-none focus:border-white transition-colors resize-none"
+
+                    className="w-full py-3 bg-transparent text-sm outline-none transition-colors resize-none placeholder:opacity-40"
+                    style={{
+                      borderBottom: "1px solid hsl(30 15% 85%)",
+                      color: "hsl(0 0% 10%)",
+                    }}
+                    onFocus={(e) =>
+                      (e.target.style.borderBottomColor = "hsl(0 0% 10%)")
+                    }
+                    onBlur={(e) =>
+                      (e.target.style.borderBottomColor = "hsl(30 15% 85%)")
+                    }
                   />
-                  <ValidationError prefix="Message" field="message" errors={state.errors} className="text-red-900/80 text-xs mt-1" />
+                  <ValidationError
+                    prefix="Message"
+                    field="message"
+                    errors={state.errors}
+                    className="text-xs mt-1"
+                    style={{ color: "hsl(0 0% 60%)" }}
+                  />
                 </div>
 
                 <button
                   type="submit"
                   disabled={state.submitting}
-                  className="group flex items-center gap-3 px-8 py-4 bg-white text-black font-bold rounded-full hover:bg-zinc-200 disabled:opacity-50 transition-all"
+
+                  className="group inline-flex items-center gap-3 px-8 py-3.5 text-sm font-medium tracking-wide transition-all duration-300 disabled:opacity-40"
+                  style={{
+                    backgroundColor: "hsl(0 0% 10%)",
+                    color: "hsl(40 20% 95%)",
+                  }}
                 >
                   {state.submitting ? "Sending..." : "Send Message"}
-                  <Send className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                  <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
+                    &rarr;
+                  </span>
                 </button>
               </form>
             )}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
+  )
 }
-
