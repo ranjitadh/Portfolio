@@ -7,7 +7,7 @@ const education = [
   {
     institution: "National College of Engineering",
     degree: "Bachelor in Computer Engineering",
-    period: "2022 — Present",
+    period: "2022 — 2026",
   },
   {
     institution: "Gorkha International Public Secondary",

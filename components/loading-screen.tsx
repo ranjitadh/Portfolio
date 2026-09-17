@@ -43,7 +43,7 @@ export default function LoadingScreen() {
               className="font-heading text-2xl font-bold tracking-tight"
               style={{ color: "hsl(0 0% 10%)" }}
             >
-              RA.
+              Ranjit Adhikari
             </motion.span>
             <div className="w-16 h-px relative overflow-hidden" style={{ backgroundColor: "hsl(30 15% 88%)" }}>
               <motion.div

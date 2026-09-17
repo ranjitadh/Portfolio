@@ -8,6 +8,13 @@ import ProjectGraphic from "@/components/project-graphic"
 
 export const ALL_PROJECTS = [
   {
+    title: "CondeGlobal",
+    description:
+      "Mission support and workforce solutions website for Cond\u00e9 Global Solutions LLC, featuring structured capabilities, sectors, and careers exposure.",
+    link: "https://www.condeglobal.com/",
+    tags: ["Next.js", "TypeScript", "Tailwind CSS"],
+  },
+  {
     title: "GoHandsY",
     description:
       "Production marketplace platform connecting customers with craftsmen, built with multilingual support and full-stack integration.",

@@ -1,6 +1,7 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useRef } from "react"
+import { motion, useScroll, useTransform, useSpring } from "framer-motion"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import LoadingScreen from "@/components/loading-screen"
@@ -8,6 +9,19 @@ import SmoothScrollProvider from "@/components/smooth-scroll-provider"
 import Link from "next/link"
 
 export default function AboutPage() {
+  const headerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: headerRef,
+    offset: ["start start", "end start"],
+  })
+
+  const headerY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -60]), {
+    stiffness: 100,
+    damping: 30,
+  })
+  const headerScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.6])
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+
   return (
     <>
       <LoadingScreen />
@@ -23,9 +37,8 @@ export default function AboutPage() {
 
           <div className="max-w-[800px] mx-auto px-6 md:px-10 pt-32 md:pt-40 pb-24">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              ref={headerRef}
+              style={{ y: headerY, scale: headerScale, opacity: headerOpacity }}
               className="mb-16"
             >
               <Link

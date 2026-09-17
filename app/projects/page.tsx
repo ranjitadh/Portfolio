@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { motion, useInView, useScroll, useTransform, useSpring } from "framer-motion"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { ALL_PROJECTS } from "@/components/projects"
@@ -13,6 +13,19 @@ import Link from "next/link"
 export default function ProjectsPage() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-50px" })
+
+  const headerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: headerRef,
+    offset: ["start start", "end start"],
+  })
+
+  const headerY = useSpring(useTransform(scrollYProgress, [0, 1], [0, -60]), {
+    stiffness: 100,
+    damping: 30,
+  })
+  const headerScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.6])
+  const headerOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
 
   return (
     <>
@@ -29,9 +42,8 @@ export default function ProjectsPage() {
 
           <div className="max-w-[1200px] mx-auto px-6 md:px-10 pt-32 md:pt-40 pb-24">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              ref={headerRef}
+              style={{ y: headerY, scale: headerScale, opacity: headerOpacity }}
               className="mb-16 md:mb-24"
             >
               <p

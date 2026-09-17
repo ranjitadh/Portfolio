@@ -16,13 +16,6 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-10">
           {/* Left */}
           <div className="space-y-3">
-            <span
-              className="font-heading text-lg font-bold tracking-tight block"
-              style={{ color: "hsl(0 0% 10%)" }}
-            >
-              RA.
-            </span>
-            <div>
               <p
                 className="text-sm font-medium"
                 style={{ color: "hsl(0 0% 15%)" }}
@@ -33,9 +26,8 @@ export default function Footer() {
                 className="text-xs"
                 style={{ color: "hsl(0 0% 55%)" }}
               >
-                Frontend / Full-Stack Developer
+                Fullstack Developer
               </p>
-            </div>
           </div>
 
           {/* Center */}

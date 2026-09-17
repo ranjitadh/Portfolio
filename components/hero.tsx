@@ -124,7 +124,7 @@ export default function Hero() {
             className="text-lg md:text-xl font-light tracking-wide"
             style={{ color: "hsl(0 0% 45%)" }}
           >
-            Frontend / Full-Stack Developer
+            Fullstack Developer
           </motion.p>
         </motion.div>
 

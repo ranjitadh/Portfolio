@@ -22,9 +22,9 @@ const jetbrains = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Ranjit Adhikari — Frontend Developer",
+  title: "Ranjit Adhikari — Fullstack Developer",
   description:
-    "Portfolio of Ranjit Adhikari, a Frontend / Full-Stack Developer crafting high-performance web experiences.",
+    "Portfolio of Ranjit Adhikari, a Fullstack Developer crafting high-performance web experiences.",
 }
 
 export default function RootLayout({
