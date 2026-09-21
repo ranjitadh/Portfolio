@@ -154,30 +154,6 @@ export default function ProjectGraphic({ project, className = "" }: ProjectGraph
       </svg>
     ),
 
-    "Virtual Worlds": (
-      <svg viewBox="0 0 800 500" fill="none" className={className}>
-        <rect width="800" height="500" fill="#F0EDE6" />
-        {/* Low-poly mountain */}
-        <polygon points="200,380 350,180 500,380" stroke="#1A1A1A" strokeWidth="1.5" fill="none" />
-        <polygon points="320,380 450,220 580,380" stroke="#C8C4BC" strokeWidth="1" fill="none" />
-        <polygon points="440,380 550,260 660,380" stroke="#D4D0C8" strokeWidth="1" fill="none" />
-        {/* Ground line */}
-        <line x1="100" y1="380" x2="700" y2="380" stroke="#E5E2DC" strokeWidth="1" />
-        {/* Sun */}
-        <circle cx="600" cy="120" r="30" stroke="#D4D0C8" strokeWidth="1" fill="none" />
-        <circle cx="600" cy="120" r="40" stroke="#E5E2DC" strokeWidth="0.5" fill="none" />
-        {/* Small trees */}
-        <line x1="160" y1="380" x2="160" y2="350" stroke="#1A1A1A" strokeWidth="1.5" />
-        <polygon points="140,360 160,330 180,360" stroke="#1A1A1A" strokeWidth="1" fill="none" />
-        <line x1="640" y1="380" x2="640" y2="355" stroke="#C8C4BC" strokeWidth="1.5" />
-        <polygon points="625,365 640,340 655,365" stroke="#C8C4BC" strokeWidth="1" fill="none" />
-        {/* Grid on ground */}
-        <line x1="200" y1="400" x2="600" y2="400" stroke="#E5E2DC" strokeWidth="0.5" />
-        <line x1="250" y1="415" x2="550" y2="415" stroke="#E5E2DC" strokeWidth="0.5" />
-        <line x1="300" y1="430" x2="500" y2="430" stroke="#E5E2DC" strokeWidth="0.5" />
-      </svg>
-    ),
-
     "SignBridge": (
       <svg viewBox="0 0 800 500" fill="none" className={className}>
         <rect width="800" height="500" fill="#F0EDE6" />

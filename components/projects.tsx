@@ -67,12 +67,6 @@ export const ALL_PROJECTS = [
     tags: ["WebGL", "Compute Shaders"],
   },
   {
-    title: "Virtual Worlds",
-    description:
-      "Professional world-building toolset for low-poly environments with high-fidelity lighting.",
-    tags: ["Unity", "C#", "WebAssembly"],
-  },
-  {
     title: "SignBridge",
     description:
       "Accessibility tool translating real-time speech into sign language animations using computer vision.",
