@@ -79,6 +79,13 @@ export const ALL_PROJECTS = [
     tags: ["Python", "OpenCV", "TensorFlow"],
   },
   {
+    title: "Minesweeper",
+    description:
+      "Classic minesweeper puzzle game reimagined with a clean, interactive interface and smooth gameplay.",
+    link: "https://minesweeper.ranjitadhikari.com.np",
+    tags: ["React", "TypeScript", "Tailwind CSS"],
+  },
+  {
     title: "Holographic UI",
     description:
       "Experimental futuristic interface design for industrial control systems and HUD visualizations.",

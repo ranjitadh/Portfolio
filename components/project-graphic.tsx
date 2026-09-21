@@ -208,6 +208,13 @@ export default function ProjectGraphic({ project, className = "" }: ProjectGraph
       </svg>
     ),
 
+    "Minesweeper": (
+      <svg viewBox="0 0 800 500" fill="none" className={className} preserveAspectRatio="xMidYMid meet">
+        <rect width="800" height="500" fill="#E5E2DC" />
+        <image href="/minesweeper.png" x="0" y="0" width="800" height="500" preserveAspectRatio="xMidYMid meet" />
+      </svg>
+    ),
+
     "Holographic UI": (
       <svg viewBox="0 0 800 500" fill="none" className={className} preserveAspectRatio="xMidYMid meet">
         <rect width="800" height="500" fill="#F0EDE6" />
