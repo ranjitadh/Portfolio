@@ -57,7 +57,7 @@ export const ALL_PROJECTS = [
     title: "Cafe Connect",
     description:
       "Bespoke mobile ordering solution for premium coffee brands, featuring fluid UI design.",
-    link: "https://my-3j553mqd5-ranjitadhs-projects.vercel.app",
+    link: "https://baddakoadda.ranjitadhikari.com.np",
     tags: ["React Native", "Expo", "Stripe"],
   },
   {
