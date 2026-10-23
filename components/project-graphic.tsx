@@ -192,22 +192,9 @@ export default function ProjectGraphic({ project, className = "" }: ProjectGraph
     ),
 
     "Optimal Fuel Route Planner": (
-      <svg viewBox="0 0 800 500" fill="none" className={className}>
+      <svg viewBox="0 0 800 500" fill="none" className={className} preserveAspectRatio="xMidYMid meet">
         <rect width="800" height="500" fill="#0F172A" />
-        <g stroke="#22D3EE" strokeWidth="2" opacity="0.6">
-          <path d="M 100 250 L 200 200 L 350 250 L 500 200 L 700 250" fill="none" />
-          <circle cx="100" cy="250" r="6" fill="#22D3EE" />
-          <circle cx="200" cy="200" r="6" fill="#22D3EE" />
-          <circle cx="350" cy="250" r="6" fill="#22D3EE" />
-          <circle cx="500" cy="200" r="6" fill="#22D3EE" />
-          <circle cx="700" cy="250" r="8" fill="#10B981" />
-        </g>
-        <g fill="#E2E8F0" opacity="0.9">
-          <rect x="150" y="150" width="60" height="4" rx="2" />
-          <rect x="450" y="150" width="60" height="4" rx="2" />
-        </g>
-        <text x="400" y="320" fontFamily="Arial, sans-serif" fontSize="24" fontWeight="600" fill="#E2E8F0" textAnchor="middle">OPTIMAL FUEL ROUTE</text>
-        <text x="400" y="350" fontFamily="Arial, sans-serif" fontSize="14" fill="#94A3B8" textAnchor="middle">Cheapest Refuel Stops</text>
+        <image href="/fuel-route-planner.png" x="0" y="0" width="800" height="500" preserveAspectRatio="xMidYMid meet" />
       </svg>
     ),
 
