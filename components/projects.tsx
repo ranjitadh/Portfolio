@@ -8,6 +8,13 @@ import ProjectGraphic from "@/components/project-graphic"
 
 export const ALL_PROJECTS = [
   {
+    title: "Optimal Fuel Route Planner",
+    description:
+      "Full-stack route optimization system that finds the cheapest refuel stops along US routes using OPIS pricing data, calculating optimal fuel stops within tank range to minimize total trip cost.",
+    link: "https://optimal-fuel-route-planner-api.onrender.com/",
+    tags: ["Next.js", "Node.js", "PostgreSQL", "Route Optimization", "API Integration"],
+  },
+  {
     title: "CondeGlobal",
     description:
       "Mission support and workforce solutions website for Cond\u00e9 Global Solutions LLC, featuring structured capabilities, sectors, and careers exposure.",
@@ -78,13 +85,6 @@ export const ALL_PROJECTS = [
       "Classic minesweeper puzzle game reimagined with a clean, interactive interface and smooth gameplay.",
     link: "https://minesweeper.ranjitadhikari.com.np",
     tags: ["React", "TypeScript", "Tailwind CSS"],
-  },
-  {
-    title: "Optimal Fuel Route Planner",
-    description:
-      "Full-stack route optimization system that finds the cheapest refuel stops along US routes using OPIS pricing data, calculating optimal fuel stops within tank range to minimize total trip cost.",
-    link: "https://optimal-fuel-route-planner-api.onrender.com/",
-    tags: ["Next.js", "Node.js", "PostgreSQL", "Route Optimization", "API Integration"],
   },
   {
     title: "Holographic UI",
