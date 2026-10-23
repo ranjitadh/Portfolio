@@ -39,7 +39,7 @@ export const ALL_PROJECTS = [
     title: "DataBrakes Web",
     description:
       "Sophisticated systems analytics portal featuring complex data visualizations and real-time monitoring.",
-    link: "https://dev.data-brakes.com/",
+    link: "https://databrakes.io/",
     tags: ["React", "D3.js", "PostgreSQL"],
   },
   {
