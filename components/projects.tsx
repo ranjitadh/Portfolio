@@ -80,6 +80,13 @@ export const ALL_PROJECTS = [
     tags: ["React", "TypeScript", "Tailwind CSS"],
   },
   {
+    title: "Optimal Fuel Route Planner",
+    description:
+      "Full-stack route optimization system that finds the cheapest refuel stops along US routes using OPIS pricing data, calculating optimal fuel stops within tank range to minimize total trip cost.",
+    link: "https://optimal-fuel-route-planner-api.onrender.com/",
+    tags: ["Next.js", "Node.js", "PostgreSQL", "Route Optimization", "API Integration"],
+  },
+  {
     title: "Holographic UI",
     description:
       "Experimental futuristic interface design for industrial control systems and HUD visualizations.",
