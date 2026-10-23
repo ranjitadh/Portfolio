@@ -32,7 +32,7 @@ export const ALL_PROJECTS = [
     title: "Multi-Tube",
     description:
       "High-performance video streaming platform with real-time analytics and global content delivery.",
-    link: "https://dev.multi-tube.com/",
+    link: "https://multi-tube.com/",
     tags: ["Next.js", "Redux", "WebRTC"],
   },
   {
